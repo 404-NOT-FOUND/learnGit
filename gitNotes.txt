@@ -9,7 +9,11 @@ git reflog // check all operations
 
 git reset --hard /* pointer */ // pointer can be HEAD^ (HEAD~1) or commit id's
 
+git checkout -- file // undo change, back to status of last add
+
 //
 Linux comment:
 <c-r> search command history
 <c-r> + \t edit command history
+<c-u> delete previous command
+<c-k> delete current command
