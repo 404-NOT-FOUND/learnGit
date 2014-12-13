@@ -1,0 +1,9 @@
+git diff []
+git add []
+git commit -m ""
+git status
+
+git log --graph --pretty=oneline // check historical branches
+git reflog // check all operations
+
+git reset --hard /* pointer */ // pointer can be HEAD^ (HEAD~1) or commit id's
