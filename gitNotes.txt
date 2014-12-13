@@ -13,6 +13,8 @@ git reset HEAD [file]  // unstage file
 
 git checkout -- [file] // undo change, back to status of last add
 
+git push origin master // push local master branch to origin master branch
+
 
 //
 Linux comment:
