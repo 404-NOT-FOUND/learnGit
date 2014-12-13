@@ -1,9 +1,15 @@
 git diff []
 git add [] // support multiple files add
 git commit -m ""
+git commit -a -m "" // -a = -All add all fles
 git status
 
 git log --graph --pretty=oneline // check historical branches
 git reflog // check all operations
 
 git reset --hard /* pointer */ // pointer can be HEAD^ (HEAD~1) or commit id's
+
+//
+Linux comment:
+<c-r> search command history
+<c-r> + \t edit command history
