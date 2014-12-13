@@ -1,5 +1,5 @@
 git diff []
-git add []
+git add [] // support multiple files add
 git commit -m ""
 git status
 
