@@ -32,4 +32,16 @@ Linux comment:
 <c-k> delete current command
 
 >>> git branch
+1) view branch 
+        --> |git branch|
+2) creat branch 
+        --> |git branch [name]|
+3) creat & switch branch 
+        --> |git checkout -b [name]|
+4) switch branch 
+        --> |git checkout [name]|
+5) merge branch to curr branch 
+        --> |git mere [name]|
+6) delete branch 
+        --> |git branch -d [name]|
 
