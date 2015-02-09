@@ -1,15 +1,24 @@
 #name Liu Tan
 #tag  gitNote
 
+>>> set up own profile {{{2
+git config --global user.name ""
+git config --global user.email []
+git donfig -- global core.editor emacs(vim for defaul)
+}}}2
+
+>>> basic git {{{2
+git help <verbe> // verb (commit, add...)
 git diff []
 git add [] // support multiple files add
 git commit -m ""
 git commit -a -m "" // -a = -All add all fles
 git status
-
+}}}2
 git log --graph --pretty=oneline // check historical branches
 git reflog // check all operations
 
+>>> version control {{{2
 // 已经commit了
 git reset --hard /* pointer */ // pointer can be HEAD^ (HEAD~1) or commit id's
 
@@ -18,20 +27,18 @@ git reset HEAD [file]  // unstage file
 
 // 只是撤销修改
 git checkout -- [file] // undo change, back to status of last add
+}}}2
 
 git push origin master // push local master branch to origin master branch
-
 git clone git@github.com:peachgo-gitSkills.git // clone repo from github
 
-
-//
 Linux comment:
 <c-r> search command history
 <c-r> + \t edit command history
 <c-u> delete previous command
 <c-k> delete current command
 
->>> git branch
+>>> git branch {{{2
 1) view branch 
         --> |git branch|
 2) creat branch 
@@ -44,4 +51,4 @@ Linux comment:
         --> |git mere [name]|
 6) delete branch 
         --> |git branch -d [name]|
-
+}}}2
