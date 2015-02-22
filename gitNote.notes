@@ -15,34 +15,12 @@ git commit -m ""
 git commit -a -m "" // -a = -All add all fles
 git status
 }}}2
-
->>> check historical branches  {{{2
-git log --graph --pretty=oneline 
-
-[options]
-git log --pretty=oneline --max-count=2
-git log --pretty=oneline --since='5 minutes ago'
-git log --pretty=oneline --until='5 minutes ago'
-git log --pretty=oneline --author=<your name>
-git log --pretty=oneline --all
-
-git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
-[--pretty="..."] defines the format of the output.
-[%h] is the abbreviated hash of the commit
-[%d] are any decorations on that commit (e.g. branch heads or tags)
-[%ad] is the author date
-[%s] is the comment
-[%an] is the author name
-[--graph] informs git to display the commit tree in an ASCII graph layout
-[--date=short] keeps the date format nice and short
-
+git log --graph --pretty=oneline // check historical branches
 git reflog // check all operations
-}}}2
 
 >>> version control {{{2
 // 已经commit了
 git reset --hard /* pointer */ // pointer can be HEAD^ (HEAD~1) or commit id's
-git revert Head // we can undo a committed change
 
 // 已经add了
 git reset HEAD [file]  // unstage file
