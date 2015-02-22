@@ -1,26 +1,43 @@
 #name Liu Tan
 #tag  gitNote
 
->>> set up own profile {{{2
+>>> set up own profile {{{1
 git config --global user.name ""
 git config --global user.email []
 git donfig -- global core.editor emacs(vim for defaul)
-}}}2
+}}}1
 
->>> basic git {{{2
+>>> basic git {{{1
 git help <verbe> // verb (commit, add...)
 git diff []
 git add [] // support multiple files add
 git commit -m ""
 git commit -a -m "" // -a = -All add all fles
+git commit --amend -m "" // amend a previous comment
 git status
-}}}2
+}}}1
 
->>> check historical branches  {{{2
+>>> other git useful comment {{{1
+1. git |mv| 
+- |mkdir lib|
+- |git mv Hello.java lib|
+
+git mv will combine two step:
+    (1) the |Hello.java| has been deleted
+    (2) the file lib/Hello.java has been created and ready to be commmited
+
+2. git tag
+git tag [] // aftertag, even reset head, when [git hist --all] we can still see
+    the taged hist.
+git tag -d [] // drop tag
+
+}}}1
+
+>>> check historical branches  {{{1
 git log --graph --pretty=oneline 
 
 [options]
-git log --pretty=oneline --max-count=2
+git log --pretty=oneline --max-count=1
 git log --pretty=oneline --since='5 minutes ago'
 git log --pretty=oneline --until='5 minutes ago'
 git log --pretty=oneline --author=<your name>
@@ -37,9 +54,9 @@ git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
 [--date=short] keeps the date format nice and short
 
 git reflog // check all operations
-}}}2
+}}}1
 
->>> version control {{{2
+>>> version control {{{1
 // 已经commit了
 git reset --hard /* pointer */ // pointer can be HEAD^ (HEAD~1) or commit id's
 git revert Head // we can undo a committed change
@@ -49,7 +66,9 @@ git reset HEAD [file]  // unstage file
 
 // 只是撤销修改
 git checkout -- [file] // undo change, back to status of last add
-}}}2
+}}}1
+
+}}}1
 
 git push origin master // push local master branch to origin master branch
 git clone git@github.com:peachgo-gitSkills.git // clone repo from github
@@ -60,10 +79,10 @@ Linux comment:
 <c-u> delete previous command
 <c-k> delete current command
 
->>> git branch {{{2
+>>> git branch {{{1
 1) view branch 
         --> |git branch|
-2) creat branch 
+1) creat branch 
         --> |git branch [name]|
 3) creat & switch branch 
         --> |git checkout -b [name]|
@@ -73,4 +92,4 @@ Linux comment:
         --> |git mere [name]|
 6) delete branch 
         --> |git branch -d [name]|
-}}}2
+}}}1
