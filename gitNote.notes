@@ -18,18 +18,18 @@ git status
 }}}1
 
 >>> other git useful comment {{{1
-1. git |mv| 
+1. git |mv| {{{2
 - |mkdir lib|
 - |git mv Hello.java lib|
-
 git mv will combine two step:
     (1) the |Hello.java| has been deleted
     (2) the file lib/Hello.java has been created and ready to be commmited
-
-2. git tag
+}}}2
+2. git |tag| {{{2
 git tag [] // aftertag, even reset head, when [git hist --all] we can still see
     the taged hist.
 git tag -d [] // drop tag
+}}}2
 
 }}}1
 
