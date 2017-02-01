@@ -136,7 +136,6 @@ undo a commit, but add a new commit
 git revert Head 
 ```
 
-> I'm just trying git revert
 
 
 ## git remote
