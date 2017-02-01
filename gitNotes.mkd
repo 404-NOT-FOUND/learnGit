@@ -129,7 +129,11 @@ git reset HEAD [file]  // unstage file
 
 ``` bash
 git reset --hard /* pointer */ // pointer can be HEAD^ (HEAD~1) or commit id's
-git revert Head // we can undo a committed change
+```
+
+undo a commit, but add a new commit
+``` bash
+git revert Head 
 ```
 
 
