@@ -1,7 +1,7 @@
 #name Liu Tan
 #tag  gitNote
 
-## set up own profile 
+## set up own profile
 1. set up name and email, used to dislay the author of the commit
 ```bash
 git config --global user.name ""
@@ -13,7 +13,9 @@ git config -- global core.editor emacs
 ```
 
 
-## basic git 
+## basic git
+<img src="./git-workflow.png" alt="git workflow" width="60%">
+
 git help <verb> // verb (commit, add...)
 
 git diff []
@@ -29,23 +31,23 @@ git commit --amend -m "" // amend a previous comment
 git status
 
 
-## other git useful comment 
-1. git |mv| 
+## other git useful comment
+1. git |mv|
 - |mkdir lib|
 - |git mv Hello.java lib|
 git mv will combine two step:
     (1) the |Hello.java| has been deleted
     (2) the file lib/Hello.java has been created and ready to be commmited
 
-2. git |tag| 
+2. git |tag|
 git tag [] // aftertag, even reset head, when [git hist --all] we can still see
     the taged hist.
 git tag -d [] // drop tag
 
 
-## check historical branches  
+## check historical branches
 ```bash
-git log --graph --pretty=oneline 
+git log --graph --pretty=oneline
 ```
 
 only display a *limit* number of commits
@@ -77,7 +79,7 @@ git reflog // check all operations
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 ```
 
-## version control 
+## version control
 
 1. `git checkout`
 2. `git revert`
@@ -91,6 +93,8 @@ use either
 - `checkout <commit>`
 - `checkout [commit] <file>`
 
+
+checkout from *local* repo to *working directory*
 #### Example 1
 view all files in a <commit> state, run and compile, do some test without harm
 the current state of your project.
@@ -104,64 +108,135 @@ git checkout <commit-id>
 git checkout master
 # undo undesired changes
 git revert
-# or 
+# or
 git reset
 ```
 
 #### Example 2
 
-undo change, back to staging area. 
+undo change, back to staging area.
 
 Note: `checkout <file>` *does* affect the current state
 ``` bash
 # see file in a old commit, the old version will show as "change to be commited"
-git checkout [commit] <file> 
+git checkout [commit] <file>
 # if you regret, want the most recent ver. back
 git checkout HEAD <file>
 ```
 
-### 已经add了
+### `git revert`
 
+undo a *single* commit, but add a new commit to record this revert.
+Note: this revert *won't* affect any subsequent commits.
 ``` bash
-git reset HEAD [file]  // unstage file
-```
-### 已经commit了
-
-``` bash
-git reset --hard /* pointer */ // pointer can be HEAD^ (HEAD~1) or commit id's
+git revert Head
 ```
 
-undo a commit, but add a new commit
+Notice that 
+1. `revert` can go both forward and backward direction while `reset` can only
+   go backward.
+2. `revert` is designed to safely undo a *public* commit while  `reset` is designed
+   to undo a *local* commit.
+
+### `git reset`
+
+only be used to undo *local* changes
+
+go back to previous state of a project by removing all subsequent comments.
+Note: this remove *all* subsequent commits.
+This a a *permanent* undo, it is the **only** git commands that might lose work.
+
 ``` bash
-git revert Head 
+git reset HEAD [file]
 ```
 
+when using `--hard`, operate both on staging area and working dir.
+without `--hard`, unstage and changed would remain in the working dir waiting
+to be add and commit again.
 
+``` bash
+# reset staging area to match the most recent commit, unchange working directory 
+git reset
+# reset staging area  and working directory to match the most recent commit
+git reset --hard
+# move branch head back to <commit>. matching added files(staging area), 
+# leave the working dir. alone.  
+# all changed file after <commit> will be in working-dir.
+git reset <commit>
+# point head to <commit>, match both staging and working dir.
+git reset --hard <commit>
+# remove all uncommitted change
+git reset --hard HEAD
+```
+
+#### handy example 1
+you have added to files `a.py` and `b.py` in the same time.
+you realize these two should really be commited to two different snapshot.
+``` bash
+# unstage b.py
+git reset b.py 
+# staging area only have a.py now
+git cim "modified a.py"
+# staging b.py again
+git add b.py
+# cim b.py in a new snapshot
+git cim "modified b.py"
+```
+#### hand example 2
+you have commit twice on some crazy feature on file `foo.py`,
+you decide to delete these two commit directly.
+```bash
+git reset --hard HEAD~2
+```
+
+### git clean
+a convinient way to remove all untracked file. 
+So we don't need to `git rm` each one of them.  
+usually used after `git reset --hard` 
+since this command alone would not affect untracked file.  
+
+```bash
+# peek which files are going to be remove, not realy doing it
+git clean -n
+# actually remove
+git clean -f
+# remove untracked files and dir. from the current dir.
+git clean -df
+```
+
+#### handy example
+you don't know what you have done and you want no one knows what happened
+```bash
+# undo changes in tracked files
+git reset --hard
+# remove untracked files
+git clean -df
+```
 
 ## git remote
 
 push local master branch to origin master branch
 ``` bash
-git push origin master 
+git push origin master
 ```
 clone repo from github
 ``` bash
-git clone git@github.com:peachgo-gitSkills.git 
+git clone git@github.com:peachgo-gitSkills.git
 ```
 
 
-## git branch 
-1) view branch 
+## git branch
+1) view branch
         --> |git branch|
-1) creat branch 
+1) creat branch
         --> |git branch [name]|
-3) creat & switch branch 
+3) creat & switch branch
         --> |git checkout -b [name]|
-4) switch branch 
+4) switch branch
         --> |git checkout [name]|
-5) merge branch to curr branch 
+5) merge branch to curr branch
         --> |git merge [name]|
-6) delete branch 
+6) delete branch
         --> |git branch -d [name]|
 
 git pull = git fetch | git merge |
