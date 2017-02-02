@@ -1,7 +1,9 @@
 #name Liu Tan
 #tag  gitNote
 
-## set up own profile
+set up own profile
+================================================================================
+
 1. set up name and email, used to dislay the author of the commit
 ```bash
 git config --global user.name ""
@@ -13,7 +15,9 @@ git config -- global core.editor emacs
 ```
 
 
-## basic git
+basic git
+================================================================================
+
 <img src="./git-workflow.png" alt="git workflow" width="60%">
 
 git help <verb> // verb (commit, add...)
@@ -79,14 +83,16 @@ git reflog // check all operations
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 ```
 
-## version control
+version control
+================================================================================
 
 1. `git checkout`
 2. `git revert`
 3. `git reset`
 4. `git clean`
 
-### 只是撤销修改 `checkout`
+只是撤销修改 `checkout`
+--------------------------------------------------------------------------------
 
 use either
 - `checkout <branch>`
@@ -95,7 +101,7 @@ use either
 
 
 checkout from *local* repo to *working directory*
-#### Example 1
+### Example 1
 view all files in a <commit> state, run and compile, do some test without harm
 the current state of your project.
 Note: `checkout <commit>` does *not* affect the current state
@@ -112,7 +118,7 @@ git revert
 git reset
 ```
 
-#### Example 2
+### Example 2
 
 undo change, back to staging area.
 
@@ -124,7 +130,8 @@ git checkout [commit] <file>
 git checkout HEAD <file>
 ```
 
-### `git revert`
+`git revert`
+--------------------------------------------------------------------------------
 
 undo a *single* commit, but add a new commit to record this revert.
 Note: this revert *won't* affect any subsequent commits.
@@ -138,7 +145,8 @@ Notice that
 2. `revert` is designed to safely undo a *public* commit while  `reset` is designed
    to undo a *local* commit.
 
-### `git reset`
+`git reset`
+--------------------------------------------------------------------------------
 
 only be used to undo *local* changes
 
@@ -169,7 +177,7 @@ git reset --hard <commit>
 git reset --hard HEAD
 ```
 
-#### handy example 1
+### handy example 1
 you have added to files `a.py` and `b.py` in the same time.
 you realize these two should really be commited to two different snapshot.
 ``` bash
@@ -182,14 +190,15 @@ git add b.py
 # cim b.py in a new snapshot
 git cim "modified b.py"
 ```
-#### hand example 2
+### hand example 2
 you have commit twice on some crazy feature on file `foo.py`,
 you decide to delete these two commit directly.
 ```bash
 git reset --hard HEAD~2
 ```
 
-### git clean
+git clean
+--------------------------------------------------------------------------------
 a convinient way to remove all untracked file. 
 So we don't need to `git rm` each one of them.  
 usually used after `git reset --hard` 
@@ -204,13 +213,34 @@ git clean -f
 git clean -df
 ```
 
-#### handy example
+### handy example
 you don't know what you have done and you want no one knows what happened
 ```bash
 # undo changes in tracked files
 git reset --hard
 # remove untracked files
 git clean -df
+```
+
+rewrite history
+================================================================================
+1. `git commit --amend` to change the msg on the most recent commit
+2. `git rebase`
+3. `git rebase -i`
+4. `git reflog`
+
+### `git commit`
+1. simply for change the msg on a commit
+2. combine staged changes with the previous commit
+
+#### handy example
+you add and commit a snapshot.
+but you forgot to add one more file
+```bash
+# add the extra file you want to use in the previous commit
+git  add <file>
+# --no-edit will add this newly staged file to the previous commit without alter the msg
+git commit --amend --no-edit
 ```
 
 ## git remote
